@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+  <script src="{% static 'js/profile.js' %}"></script>
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar -->
+    <nav>
+      <ul>
+        {% if user.is_authenticated %}
+          <li>Edit Profile</li>
+          <li>Followers</li>
+          <li>Following</li>
+          <li>Notifications</li>
+          <li>Search</li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+      <div class="profile-card">
+        <h1 class="username">{{ profile.user.username }}'s Profile</h1>
+        <p class="bio"><span class="label">Bio:</span> {{ profile.bio|default:"No bio yet." }}</p>
+
+        <div class="stats">
+          <div class="stat">
+            <p class="number">{{ profile.followers.count }}</p>
+            <p class="label">Followers</p>
+          </div>
+          <div class="stat">
+            <p class="number">{{ profile.following.count }}</p>
+            <p class="label">Following</p>
+          </div>
+        </div>
+
+        {% if request.user != profile.user %}
+        <div class="actions">
+          <button class="follow-btn" requestProfile="{{ request.user }}" Profile="{{ profile.user }}">Follow</button>
+        </div>
+        {% endif %}
+      </div>
+
+      <div id="movies-container">
+        {% if movies %}
+          {% for movie in movies %}
+            <div class="movie-card">
+              {% if movie.movie_image %}
+                <img src="{{ movie.movie_image }}" alt="{{ movie.title }}">
+              {% endif %}
+              <h3>{{ movie.movie_title }}</h3>
+              <p>{{ movie.movie_year }}</p>
+              <p>{{ movie.opinion }}</p>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </main>
+  </div>
+</body>
+</html>

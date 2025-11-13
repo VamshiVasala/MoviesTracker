@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/watching.css' %}">
+    <script src="{% static 'js/watching.js' %}"></script>
+</head>
+
+<body>
+    <div class="movie-section">
+        {% for movie in movies %}
+        <div class="movie-card">
+            {% if movie.image_url %}
+            <img src="{{ movie.image_url }}" alt="{{ movie.title }}" id="movie-image">
+            {% endif %}
+            <h3>{{ movie.title }}</h3>
+            <p>{{ movie.year }}</p>
+            <br>
+            <form method="POST" action="{% url 'update_status' movie.id %}">
+                {% csrf_token %}    
+                <input type="hidden" name="status" value="watched">
+                <button class="btn-watch">watched</button>
+            </form>
+        </div>
+        {% empty %}
+        <p>No movies added yet.</p>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+
+# Environment
+.env
+myenv/
+venv/
+.env.*
+
+# Database
+db.sqlite3
+
+# VSCode
+.vscode/
+
+# OS
+.DS_Store
+
+# Node or frontend builds (if any)
+node_modules/
+dist/
+build/

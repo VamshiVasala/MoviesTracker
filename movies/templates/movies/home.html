@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Movie App</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <script src="{% static 'js/home.js' %}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <nav>
+    <h2>🎬 MyMovies</h2>
+    <ul>  
+      {% if user.is_authenticated %}
+      <li><a href="{% url 'add_movie' %}">Add Movie</a></li>
+      <li><a href="{% url 'watching' %}">Watching</a></li>
+      <li><a href="{% url 'watched' %}">Watched</a></li>
+      <li><a href="{% url 'explore' %}">Explore</a></li>
+      <li><a href="{% url 'AISuggestions' %}">AI Suggestions</a></li>
+      <li><a href="{% url 'profile' username=user.username %}">Profile ({{ user.username }})</a></li>
+      {% else %}
+      <li><a href="{% url 'login' %}">Login</a></li>
+      <li><a href="{% url 'signup' %}">Sign Up</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+
+  <div class="content">
+    <h1>Welcome, {{ user.username|default:"Guest" }} 👋</h1>
+    <p>Select a category to manage your movies.</p>
+
+    <!-- 🧭 Search box placed neatly at top of main content -->
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search movies...">
+      <button type="button" id="searchBtn">Search</button>
+    </div>
+
+    <!-- 🎬 Movies Section -->
+    {% block movie_section %}
+    <div class="movie-section">
+      {% for movie in movies %}
+      <div class="movie-card">
+        {% if movie.image_url %}
+    <img src="{{ movie.image_url }}" alt="{{ movie.title }}">
+{% endif %}
+        <h3>{{ movie.title }}</h3>
+        <p>{{ movie.year }}</p>
+      </div>
+      {% empty %}
+      <p>No movies added yet.</p>
+      {% endfor %}
+    </div>
+    {% endblock %}
+  </div>
+</body>
+</html>

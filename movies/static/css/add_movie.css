@@ -1,0 +1,247 @@
+/* === Page Layout === */
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background: linear-gradient(135deg, #74ebd5 0%, #72747b 100%);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* === Form Container === */
+.addmovie {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 40px 60px;
+  margin: 60px 0;
+  width: 100%;
+  max-width: 480px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.addmovie:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* === Header === */
+.addmovie h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+/* === Form Fields === */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+form p {
+  margin: 0;
+}
+
+/* Django renders <p> <label> <input> ... </p> */
+form label {
+  display: block;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="file"],
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background: #f9f9f9;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 6px rgba(102, 126, 234, 0.5);
+  outline: none;
+  background: #fff;
+}
+
+/* === Suggestions Box === */
+#suggestions {
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 1000;
+  border-radius: 0 0 8px 8px;
+}
+
+#suggestions li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#suggestions li:hover {
+  background: #f3f3f3;
+}
+
+#suggestions img {
+  width: 40px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* === Submit Button === */
+button[type="submit"] {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  font-weight: 600;
+}
+
+button[type="submit"]:hover {
+  background: linear-gradient(135deg, #5a68e0, #6f3fa5);
+  transform: translateY(-2px);
+}
+
+/* === Link === */
+p a {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  text-decoration: none;
+  color: #667eea;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+p a:hover {
+  color: #764ba2;
+}
+
+/* === Responsive Design === */
+
+/* Mobile Phones (portrait) */
+@media (max-width: 480px) {
+  body {
+    align-items: center;
+  }
+
+  .addmovie {
+    margin: 20px;
+    padding: 20px;
+    width: 90%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .addmovie h2 {
+    font-size: 1.3rem;
+  }
+
+  form input,
+  form select,
+  form textarea {
+    font-size: 0.95rem;
+  }
+
+  button[type="submit"] {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+}
+
+/* Tablets (landscape or portrait) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .addmovie {
+    max-width: 400px;
+    padding: 30px;
+    margin: 40px 0;
+  }
+
+  .addmovie h2 {
+    font-size: 1.4rem;
+  }
+
+  form input,
+  form select,
+  form textarea {
+    font-size: 1rem;
+  }
+}
+
+/* Small Laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .addmovie {
+    max-width: 460px;
+    padding: 35px 45px;
+  }
+
+  .addmovie h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Large Screens */
+@media (min-width: 1025px) {
+  .addmovie {
+    max-width: 520px;
+    padding: 45px 60px;
+  }
+}
+
+/* === Fix overflow & alignment issues === */
+.addmovie {
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Prevent form elements from exceeding container width */
+form input,
+form select,
+form textarea {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* Keep suggestions inside container */
+#suggestions {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: -10px;
+}
+
+/* Image preview responsive */
+#posterPreview {
+  display: block;
+  margin: 10px auto;
+  max-width: 100%;
+  height: auto;
+}

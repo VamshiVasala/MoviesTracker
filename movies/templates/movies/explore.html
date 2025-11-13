@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/explore.css' %}">
+</head>
+
+<body>
+    <div id="two-columns">
+        <div id="filter">
+            <h2>Filters</h2>
+            <div>
+                <h4>Genres</h4>
+                <div id="genreContainer" class="checkbox-group"></div>
+            </div>
+
+            <div>
+                <h4>Cast</h4>
+                <div id="castContainer" class="checkbox-group"></div>
+            </div>
+        </div>
+        <div id="movies-container"></div>
+    </div>
+    <script>
+        const analysisUrl = "{% url 'analysis' %}";
+    </script>
+    <script src="{% static 'js/explore.js' %}">
+    </script>
+
+</body>
+
+</html>

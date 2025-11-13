@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies List</title>
+    <link rel="stylesheet" href="{% static 'css/movieList.css' %}">
+    <script src="{% static 'js/toast.js' %}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    
+
+    <h2>All Movies</h2>
+    <div class="top-btn-container">
+  <a href="{% url 'add_movie' %}" class="btn top-btn">Add Movie</a>
+  <a href="{% url 'home' %}" class="btn top-btn">Home</a>
+</div>
+    <div class="movie-section">
+        {% if movies %}
+            {% for movie in movies %}
+            <div class="movie-card">
+                {% if movie.image_url %}
+    <img src="{{ movie.image_url }}" alt="{{ movie.title }}">
+{% endif %}
+                <h3>{{ movie.title }}</h3>
+                <p>{{ movie.year }}</p>
+                <p>{{ movie.description }}</p>
+                <p>Status: {{ movie.get_status_display }}</p>
+
+                <!-- Update Status Form -->
+                <form method="POST" action="{% url 'update_status' movie.id %}">
+                    {% csrf_token %}
+                    <select name="status">
+                        <option value="watchlist" {% if movie.status == 'watchlist' %}selected{% endif %}>Watchlist</option>
+                        <option value="watching" {% if movie.status == 'watching' %}selected{% endif %}>Watching</option>
+                        <option value="watched" {% if movie.status == 'watched' %}selected{% endif %}>Watched</option>
+                    </select>
+                    <button type="submit">Update</button>
+                </form>
+                <div class="btn-container">
+  <a href="{% url 'edit_movie' movie.id %}" class="btn edit-btn">Edit</a>
+  <a href="{% url 'delete_movie' movie.id %}" class="btn delete-btn">Delete</a>
+</div>
+
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No movies added yet.</p>
+        {% endif %}
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Movie</title>
+    {% load static %}
+
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<script src="{% static 'js/toast.js' %}"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Edit Movie 🎬</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="background-color:#4CAF50;color:white;">💾 Save Changes</button>
+    </form>
+   
+    <a href="{% url 'home' %}" class="cancel">Cancel</a>
+    
+</div>
+{% if messages %}
+<div id="toast-container">
+  {% for message in messages %}
+    <div class="toast {{ message.tags }}">{{ message }}</div>
+  {% endfor %}
+</div>
+{% endif %}
+
+</body>
+</html>

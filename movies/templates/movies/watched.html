@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/watched.css' %}">
+    <script src="{% static 'js/watched.js' %}"></script>
+</head>
+
+<body>
+      <h1>Watched Movies</h1>
+    <div id="movies-container"></div>
+    <!-- Popup -->
+    <div class="popupBox">
+        <div class="popup-content">
+            <!-- <h2>Welcome!</h2> -->
+            <form id="reviewForm" method="POST">
+                {% csrf_token %}
+                <label for="myNote">How do you felt about this?</label>
+                <textarea id="myNote" name="opinion" rows="5" cols="40"
+                    placeholder="Type your opinion here..."></textarea>
+                <!-- <center> -->
+                <div class="stars">
+                    <span class="star" data-value="1">★</span>
+                    <span class="star" data-value="2">★</span>
+                    <span class="star" data-value="3">★</span>
+                    <span class="star" data-value="4">★</span>
+                    <span class="star" data-value="5">★</span>
+                </div>
+                <!-- </center>    -->
+                <input type="hidden" id="starsInput" name="stars" value="0">
+                <div class="submitBtn">
+                    <button class="SaveBtn">Save</button>
+                </div>
+            </form>
+            <div class="clear">
+                <button class="closeBtn">Close</button>
+            </div>
+        </div>
+    </div>
+  
+</body>
+
+</html>

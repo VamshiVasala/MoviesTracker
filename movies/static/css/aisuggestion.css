@@ -1,0 +1,112 @@
+#movieContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+  padding: 30px;
+  background-color: #0f0f0f;
+  border-radius: 15px;
+  overflow-y: auto;
+  height: 720px;
+}
+
+/* Movie Card Base */
+.movie-card {
+  background-color: #1a1a1a;
+  border-radius: 16px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+  color: #fff;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 330px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover img {
+  transform: scale(1.05);
+}
+
+.movie-card h3 {
+  font-size: 1.2rem;
+  margin: 10px 0 5px;
+  color: #00bfff;
+}
+
+.movie-card p {
+  font-size: 0.9rem;
+  color: #ccc;
+  line-height: 1.4;
+}
+
+/* ===== MOBILE (phones ≤600px) ===== */
+@media (max-width: 600px) {
+  #movieContainer {
+    grid-template-columns: 1fr;
+    padding: 15px;
+    gap: 15px;
+    height: auto; /* allow scrolling naturally */
+  }
+
+  .movie-card {
+    padding: 12px;
+  }
+
+  .movie-card img {
+    height: 240px;
+  }
+
+  .movie-card h3 {
+    font-size: 1rem;
+  }
+
+  .movie-card p {
+    font-size: 0.85rem;
+  }
+}
+
+/* ===== TABLETS & SMALL LAPTOPS (601px–1024px) ===== */
+@media (max-width: 1024px) and (min-width: 601px) {
+  #movieContainer {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 18px;
+    padding: 25px;
+    height: auto;
+  }
+
+  .movie-card img {
+    height: 280px;
+  }
+
+  .movie-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .movie-card p {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== DESKTOPS (≥1025px) ===== */
+@media (min-width: 1025px) {
+  #movieContainer {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .movie-card img {
+    height: 340px;
+  }
+}

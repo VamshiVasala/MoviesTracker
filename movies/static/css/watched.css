@@ -1,0 +1,232 @@
+/* ===== BODY & CONTAINER ===== */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* ===== MOVIE CARDS ===== */
+#movies-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.movie {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.movie:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.movie img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.movie .title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.movie p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* ===== STAR RATINGS ===== */
+.stars {
+  display: flex;
+  flex-direction: row-reverse; 
+  /* margin-right:  130px; */
+  justify-content: center;  
+  /* margin; */
+}
+
+.star {
+  font-size: 2rem;
+  color: gold;
+  cursor: pointer;
+}
+.star:hover,
+.star:hover ~ .star,
+.star.selected,
+.star.selected ~ .star {
+  color: gold;
+}
+
+/* ===== BUTTONS ===== */
+.openBtn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #007bff, #00b4ff);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    margin-top: 10px;
+}
+
+.openBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,123,255,0.4);
+}
+
+.SaveBtn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #3b89a5;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 15px;
+    transition: background 0.2s;
+}
+
+.SaveBtn:hover {
+    background: #36a8d9;
+}
+
+.closeBtn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #185281;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 15px;
+    transition: background 0.2s;
+}
+
+.closeBtn:hover {
+    background: #297fb4;
+}
+
+/* ===== POPUP BOX ===== */
+.popupBox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: #3f92ff;
+    padding: 25px 20px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.9);}
+    to {opacity: 1; transform: scale(1);}
+}
+
+/* ===== REVIEW FORM ===== */
+/* ===== LABEL ===== */
+#reviewForm label {
+    font-weight: bold;
+    color: #fff;           /* White text to contrast with popup background */
+    font-size: 1rem;       /* Slightly bigger for readability */
+    text-align: left;       /* Align label to left */
+    display: block;
+    margin-bottom: 8px; 
+    width: 100%;    /* Space between label and textarea */
+}
+
+/* ===== TEXTAREA ===== */
+#reviewForm textarea {
+    width: 100%;             /* Full width of popup content */
+    padding: 12px;           /* Comfortable inner spacing */
+    border-radius: 8px;      /* Rounded corners */
+    border: none;            /* No default border */
+    resize: vertical;        /* Allow vertical resizing only */
+    min-height: 100px;       /* Reasonable height for typing */
+    font-size: 0.95rem;      /* Easy to read */
+    background-color: #e9f1ff; /* Light background for contrast */
+    color: #333;             /* Dark text for readability */
+    transition: outline 0.2s ease; /* Smooth outline transition */
+}
+
+#reviewForm textarea:focus {
+    outline: 2px solid #1c1c1c; /* Dark outline on focus for clarity */
+}
+
+
+.submitBtn {
+    display: flex;
+    justify-content: center;
+}
+
+.clear {
+    display: flex;
+    justify-content: center;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+    #movies-container {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .movie img {
+        max-height: 200px;
+    }
+
+    .popup-content {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .star {
+        font-size: 1.8rem;
+    }
+}
+@media (max-width: 768px) {
+  /* Styles for mobile screens (phones, small tablets) */
+}
+
+@media (max-width: 1024px) {
+  /* Styles for tablets or small laptops */
+}
+
+@media (min-width: 1025px) {
+  /* Styles for large screens */
+}

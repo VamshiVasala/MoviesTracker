@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Movie</title>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{% static 'css/add_movie.css' %}">
+    <script src="{% static 'js/addMovie.js' %}" defer></script>
+    <script>
+    // Send backend key to JS
+    const TMDB_API_KEY = "{{ TMDB_API_KEY }}";
+</script>
+</head>
+<body>
+    <div class="addmovie">
+        <h2>Add to WatchList</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <p>
+                {{ form.title.label_tag }}
+                {{ form.title }}
+            </p>
+
+            <!-- 👇 Suggestion box should stay inside the form -->
+            <ul id="suggestions"></ul>
+
+            <p>
+                {{ form.description.label_tag }}
+                {{ form.description }}
+            </p>
+            
+            <p>
+                {{ form.year.label_tag }}
+                {{ form.year }}
+            </p>
+            
+            <!-- Hidden fields -->
+            {{ form.image_url }}
+            {{ form.genres }}
+            {{ form.cast }}
+
+            <!-- Optional image preview -->
+            <img id="posterPreview" alt="Poster preview" style="display:none; width:150px; border-radius:10px; margin-top:10px;">
+            
+            <button type="submit" class="addMovie">Add Movie</button>
+        </form>
+
+        <p><a href="{% url 'movie_list' %}">Back to Movies List</a></p>
+    </div>
+</body>
+</html>

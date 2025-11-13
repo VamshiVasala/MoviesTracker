@@ -1,0 +1,296 @@
+/* ====== GLOBAL STYLES ====== */
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #0d1b2a, #1b263b);
+  color: #f8f9fa;
+  margin: 0;
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  color: #00b4ff;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* ====== BUTTONS ====== */
+.btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #007bff, #00b4ff);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  margin: 10px 5px;
+  text-align: center;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 180, 255, 0.4);
+}
+
+/* ====== MOVIE SECTION ====== */
+.movie-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 25px;
+  padding: 20px;
+  justify-items: center;
+  overflow: hidden;
+}
+
+/* ====== MOVIE CARD ====== */
+.movie-card {
+  background: #1e3a5f;
+  border-radius: 15px;
+  padding: 20px;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  /* gap: 10px;/ */
+  
+}
+
+.movie-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(0, 180, 255, 0.3);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.movie-card h3 {
+  font-size: 1.3rem;
+  color: #00b4ff;
+  margin: 10px 0 5px;
+}
+
+.movie-card p {
+  margin: 5px 0;
+  font-size: 0.95rem;
+  color: #c9d6e3;
+}
+
+/* ====== FORM STYLING ====== */
+form {
+  margin-top: 10px;
+}
+
+select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #00b4ff;
+  outline: none;
+  font-size: 0.9rem;
+  background-color: #16324f;
+  color: #f8f9fa;
+  cursor: pointer;
+}
+
+button {
+  background: linear-gradient(135deg, #00b4ff, #007bff);
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  margin-left: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  overflow: hidden;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #0096e2, #0066cc);
+}
+
+/* ====== TOAST STYLING ====== */
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.toast {
+  background: #2d5fa1;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  animation: fadeInOut 3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.toast.success { background: #28a745; }
+.toast.error { background: #dc3545; }
+.toast.info { background: #007bff; }
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-20px); }
+  10%, 90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}
+
+/* ====== RESPONSIVE DESIGN ====== */
+
+/* Mobile (≤600px) */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+
+  .movie-section {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .movie-card {
+    padding: 15px;
+    max-width: 100%;
+  }
+
+  .movie-card img {
+    height: 280px;
+  }
+
+  button, select {
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    overflow: hidden;
+  }
+
+  #toast-container {
+    top: auto;
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+/* Tablets (601px–1024px) */
+@media (max-width: 1024px) {
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .movie-card img {
+    height: 300px;
+  }
+
+  .movie-section {
+    gap: 20px;
+  }
+}
+
+/* Large Screens (≥1025px) */
+@media (min-width: 1025px) {
+  .movie-section {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+}
+/* ====== BUTTON CONTAINER ====== */
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.movie-card .btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect inside cards */
+.movie-card .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 180, 255, 0.4);
+}
+
+/* Specific color styles */
+.edit-btn {
+  background: linear-gradient(135deg, #007bff, #00b4ff);
+}
+
+.delete-btn {
+  background: linear-gradient(135deg, #dc3545, #ff6b6b);
+}
+
+/* Stack vertically on small screens */
+@media (max-width: 600px) {
+  .btn-container {
+    flex-direction: column;
+  }
+  .movie-card .btn {
+    width: 100%;
+  }
+}
+/* ====== TOP BUTTONS (Home & Add Movie) ====== */
+.top-btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+  margin-left: 30px;
+}
+
+.top-btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #007bff, #00b4ff);
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 180, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.top-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 180, 255, 0.4);
+}
+
+/* Responsive for small screens */
+@media (max-width: 600px) {
+  .top-btn-container {
+    flex-direction: column;
+    border-right: 10px;
+  }
+
+  .top-btn {
+    width: 70%;
+  }
+}
