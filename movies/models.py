@@ -1,9 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from pgvector.django import VectorField
-from nltk.tokenize import sent_tokenize
-from .embedding import generate_embedding
-import time
 import numpy as np
 
 class Movie(models.Model):
@@ -18,18 +14,12 @@ class Movie(models.Model):
     year = models.IntegerField(default=2024)    
     image_url = models.URLField(max_length=500, blank=True, null=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='select')
-    titleEmb = VectorField(dimensions=96, null=True, blank=True)
     genres = models.TextField(blank=True)
     cast = models.TextField(blank=True)
 
 
     def __str__(self):
         return self.title
-    
-    def save(self, *args, **kwargs):
-        if self.titleEmb is None and self.title:
-            self.titleEmb = generate_embedding(self.title)
-        super().save(*args, **kwargs)
 
     
 class Review(models.Model):
@@ -38,18 +28,8 @@ class Review(models.Model):
     stars = models.IntegerField(default=0)
     opinion = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    revieEmb = VectorField(dimensions=96, null=True, blank=True) 
     def __str__(self):
-        return f"{self.movie.title} - {self.stars}⭐"
-    
-    
-    def save(self, *args, **kwargs):
-        if self.opinion:
-            sentences = sent_tokenize(self.opinion)
-            embeddings = [generate_embedding(s) for s in sentences]
-            self.revieEmb = np.mean(embeddings, axis=0)  # average sentence vectors
-        super().save(*args, **kwargs)          
-            
+        return f"{self.movie.title} - {self.stars}⭐"        
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
